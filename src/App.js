@@ -1,24 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
-
+import { BrowserRouter, Route, Routes, } from "react-router-dom";
+import Navbar from "./Components/Navbar.js";
+import TicketCancel from "./Components/TicketCancel.js";
+import TrackService from "./Components/TrackService.js";
+import TrackStatus from "./Components/TrackStatus.js";
+import Gallery from "./Components/Gallery.js";
+import BookingOptions from "./Components/BookingOptions.js";
+import { Box } from "@mui/material";
+import PageNotFound from "./Components/PageNotFound.js";
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Box className="App">
+      <BrowserRouter>
+      <Navbar />
+        <Routes>
+          <Route path="/" element={<BookingOptions />} />
+          <Route path="/TicketCancel" element={<TicketCancel />} />
+          <Route path="/TrackStatus" element={<TrackStatus />} />
+          <Route path="/TrackService" element={<TrackService />} />
+          <Route path="/Gallery" element={<Gallery />} />
+          <Route path="*" element={<PageNotFound />} />
+        </Routes>
+      </BrowserRouter>
+    </Box>
   );
 }
 
