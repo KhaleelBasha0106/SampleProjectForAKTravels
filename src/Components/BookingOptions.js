@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   Box,
   TextField,
@@ -22,7 +23,7 @@ const Item = styled(Paper)(({ theme }) => ({
 
 const BookingOptions = () => {
   const [bookingData, setBookingData] = useState(null);
-
+  const navigate = useNavigate();
   useEffect(() => {
     // Fetch data from your API endpoint
     fetch("/api/bookings")
@@ -81,7 +82,7 @@ const BookingOptions = () => {
         />
         <br />
         <br />
-        <Button variant="contained">Check Avaliability</Button>
+        <Button variant="contained" onClick={()=> navigate('/buses')}>Check Avaliability</Button>
       </Box>
       {bookingData && (
         <Box>
