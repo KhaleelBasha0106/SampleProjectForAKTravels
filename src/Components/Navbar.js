@@ -96,7 +96,7 @@ export default function NavbarTest(props) {
             edge="start"
             color="inherit"
             aria-label="open drawer"
-            sx={{ mr: 2, ":hover": "#FFBE7B",display:{md:'none'} }}
+            sx={{ mr: 2, ":hover": "#FFBE7B", display: { md: "none" } }}
             onClick={handleDrawerToggle}
           >
             <MenuIcon />
@@ -115,10 +115,11 @@ export default function NavbarTest(props) {
                 display: {
                   xs: "none",
                   md: "block",
+                  sm: "block",
                 },
               }}
             >
-              {navItems.map((item,index) => {
+              {navItems.map((item, index) => {
                 return (
                   <Link to={item.path} key={index}>
                     <Button sx={{ color: "white" }}>{item.name}</Button>
@@ -160,7 +161,7 @@ export default function NavbarTest(props) {
           horizontal: "right",
         }}
       >
-        {avatarItems.map((item,index) => {
+        {avatarItems.map((item, index) => {
           return (
             <List key={index} sx={{ padding: "10px 40px" }}>
               <ListItem>
