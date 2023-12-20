@@ -96,7 +96,7 @@ export default function NavbarTest(props) {
             edge="start"
             color="inherit"
             aria-label="open drawer"
-            sx={{ mr: 2, ":hover": "#FFBE7B", display: { md: "none" } }}
+            sx={{ mr: 2, ":hover": "#FFBE7B", display: { md: "none",sm:"none" } }}
             onClick={handleDrawerToggle}
           >
             <MenuIcon />
@@ -105,7 +105,10 @@ export default function NavbarTest(props) {
             variant="h6"
             noWrap
             component="div"
-            sx={{ flexGrow: 1, display: { xs: "block", md: "block" } }}
+            sx={{
+              flexGrow: 1,
+              display: { xs: "block", md: "block", sm: "flex" },
+            }}
           >
             AK TRAVELS
           </Typography>
