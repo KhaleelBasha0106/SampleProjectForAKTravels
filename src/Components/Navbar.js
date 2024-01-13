@@ -96,7 +96,11 @@ export default function NavbarTest(props) {
             edge="start"
             color="inherit"
             aria-label="open drawer"
-            sx={{ mr: 2, ":hover": "#FFBE7B", display: { md: "none",sm:"none" } }}
+            sx={{
+              mr: 2,
+              ":hover": "#FFBE7B",
+              display: { md: "none", sm: "none" },
+            }}
             onClick={handleDrawerToggle}
           >
             <MenuIcon />

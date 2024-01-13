@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   Box,
@@ -6,30 +6,44 @@ import {
   Button,
   Typography,
   InputAdornment,
-  Stack,
-  Paper,
+  // Stack,
+  // Paper,
 } from "@mui/material";
-import { styled } from "@mui/material/styles";
+// import { styled } from "@mui/material/styles";
 import EventIcon from "@mui/icons-material/Event";
 
-const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
-  ...theme.typography.body2,
-  padding: theme.spacing(1),
-  textAlign: "center",
-  color: theme.palette.text.secondary,
-  flexGrow: 1,
-}));
+// const Item = styled(Paper)(({ theme }) => ({
+//   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
+//   ...theme.typography.body2,
+//   padding: theme.spacing(1),
+//   textAlign: "center",
+//   color: theme.palette.text.secondary,
+//   flexGrow: 1,
+// }));
 
 const BookingOptions = () => {
-  const [bookingData, setBookingData] = useState(null);
+  // const [bookingData, setBookingData] = useState(null);
+  const [userData, setUserData] = useState({
+    from: "",
+    to: "",
+    depature: null,
+    roundtrip: null,
+  });
+
+  const handler = (e) => {
+    const { name, value } = e.target;
+    setUserData((prevUserData) => ({
+      ...prevUserData,
+      [name]: value,
+    }));
+  };
   const navigate = useNavigate();
-  useEffect(() => {
-    // Fetch data from your API endpoint
-    fetch("/api/bookings")
-      .then((response) => response.json())
-      .then((data) => setBookingData(data));
-  }, []);
+  // useEffect(() => {
+  //   // Fetch data from your API endpoint
+  //   fetch("/api/bookings")
+  //     .then((response) => response.json())
+  //     .then((data) => setBookingData(data));
+  // }, []);
   return (
     <Box sx={{ display: "flex", justifyContent: "center" }}>
       <Box
@@ -45,16 +59,30 @@ const BookingOptions = () => {
           Booking
         </Typography>
         <br />
-        <TextField name="From" type="text" label="From"></TextField>
+        <TextField
+          name="from"
+          onChange={handler}
+          value={userData.from}
+          type="text"
+          label="From"
+        ></TextField>
         <br />
         <br />
-        <TextField name="To" type="text" label="To"></TextField>
+        <TextField
+          name="to"
+          onChange={handler}
+          value={userData.to}
+          type="text"
+          label="To"
+        ></TextField>
         <br />
         <br />
         <TextField
           id="depart-on"
           type="date"
-          label="Depart on" 
+          value={userData.depature}
+          label="Depart on"
+          onChange={handler}
           variant="outlined"
           InputProps={{
             startAdornment: (
@@ -70,6 +98,8 @@ const BookingOptions = () => {
         <TextField
           id="depart-on"
           type="date"
+          value={userData.roundtrip}
+          onChange={handler}
           label="Round trip"
           variant="outlined"
           InputProps={{
@@ -82,21 +112,10 @@ const BookingOptions = () => {
         />
         <br />
         <br />
-        <Button variant="contained" onClick={()=> navigate('/buses')}>Check Avaliability</Button>
+        <Button variant="contained" onClick={() => navigate("/buses")}>
+          Check Avaliability
+        </Button>
       </Box>
-      {bookingData && (
-        <Box>
-          <Typography variant="h6">Available Bookings</Typography>
-          <Stack>
-            {bookingData.map((booking, index) => (
-              <Item key={index}>
-                From: {booking.from}, To: {booking.to}, Departure Date:{" "}
-                {booking.departureDate}
-              </Item>
-            ))}
-          </Stack>
-        </Box>
-      )}
     </Box>
   );
 };
